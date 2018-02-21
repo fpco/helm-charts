@@ -1,0 +1,9 @@
+apiVersion: v1
+description: FPCO Cluster Foundation
+name: foundation
+maintainers:
+  - name: Deni Bertovic
+    email: deni@fpcomplete.com
+sources:
+  - https://github.com/fpco/helm-charts
+version: 0.1.0

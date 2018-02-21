@@ -1,0 +1,13 @@
+kube-lego:
+  config:
+    # set your email
+    LEGO_EMAIL: foo@example.com
+    # Uncomment for prod
+    # LEGO_URL: https://acme-v01.api.letsencrypt.org/directory
+
+external-dns:
+  image:
+    tag: v0.4.5
+  podAnnotations:
+    "iam.amazonaws.com/role": AWS_IAM_ROLE_FOR_ROUTE_53
+

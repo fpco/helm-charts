@@ -1,0 +1,18 @@
+dependencies:
+- name: kube-lego
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.4.0
+- name: external-dns
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.4.9
+- name: heapster
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.2.7
+- name: kubernetes-dashboard
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.5.3
+- name: kube2iam
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.8.0
+digest: sha256:1207237139d8e50c232700adf4a7351e176d8850b44de3e614c0bae87fbb3882
+generated: 2018-03-01T19:10:56.267406368+01:00
