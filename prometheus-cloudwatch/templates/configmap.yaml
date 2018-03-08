@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-config
+{{- if .Values.config }}
+data:
+{{ .Values.config | indent 2 }}
+{{- end }}
+

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "prometheus-cloudwatch.fullname" . }}
+  labels:
+    app: {{ template "prometheus-cloudwatch.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.externalPort }}
+      targetPort: {{ .Values.service.internalPort }}
+      protocol: TCP
+      name: http-metrics
+  selector:
+    app: {{ template "prometheus-cloudwatch.name" . }}
+    release: {{ .Release.Name }}
