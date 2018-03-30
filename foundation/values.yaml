@@ -11,3 +11,12 @@ external-dns:
   podAnnotations:
     "iam.amazonaws.com/role": AWS_IAM_ROLE_FOR_ROUTE_53
 
+kube2iam:
+  host:
+    iptables: true
+    interface: cni0
+  rbac:
+    create: true
+  extraArgs:
+    auto-discover-base-arn: true
+
