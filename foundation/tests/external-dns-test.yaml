@@ -19,7 +19,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: externa-dns-test
+  name: external-dns-test
 spec:
   template:
     metadata:
