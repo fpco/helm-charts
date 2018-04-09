@@ -1,0 +1,6 @@
+Prometheus operator has been deployes
+
+Check if everything is running by doing:
+
+kubectl --namespace=monitoring get pods
+

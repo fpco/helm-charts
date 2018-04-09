@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: {{ template "prometheus.fullname" . }}
+  labels:
+    app: {{ template "prometheus.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+{{ if .Values.ingress.enabled }}
+  externalUrl: "{{ .Values.service.prometheusExternalUrl }}"
+  routePrefix: "/prometheus"
+{{- end }}
+  serviceMonitorSelector:
+    matchExpressions:
+      - {key: k8s-app, operator: Exists}
+  serviceAccountName: {{ template "prometheus.fullname" . }}
+  version: {{ .Values.service.prometheusVersion }}
+  ruleSelector:
+    matchLabels:
+      role: fpco-monitoring-prometheus-rulefiles
+  alerting:
+    alertmanagers:
+    - name: {{ template "alertmanager.fullname" . }}
+      port: web
+      pathPrefix: "/alertmanager"
+  resources:
+{{ toYaml .Values.resources | indent 4 }}

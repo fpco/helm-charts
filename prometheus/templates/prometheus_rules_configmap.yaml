@@ -1,0 +1,16 @@
+{{- if .Values.defaultRules.create }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ template "prometheus.fullname" . }}-fpco-rules
+  labels:
+    role: {{ template "prometheus.fullname" . }}-rulefiles
+    prometheus: {{ template "prometheus.fullname" . }}
+    app: {{ template "prometheus.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    role: fpco-monitoring-prometheus-rulefiles
+data:
+  {{ (.Files.Glob "files/prometheus.rules.yaml").AsConfig }}
+{{- end -}}

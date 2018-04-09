@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Alertmanager
+metadata:
+  name: {{ template "alertmanager.fullname" . }}
+  labels:
+    alertmanager: {{ template "alertmanager.fullname" . }}
+    app: {{ template "alertmanager.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+{{ if .Values.ingress.enabled }}
+  externalUrl: "{{ .Values.service.alertManagerExternalUrl }}"
+  routePrefix: "/alertmanager"
+{{ end }}
+  replicas: {{ .Values.alertManagerReplicaCount }}
+  version: {{ .Values.alertManagerVersion }}
+

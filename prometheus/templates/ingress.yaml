@@ -1,0 +1,33 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "prometheus.fullname" . }}
+  labels:
+    app: {{ template "prometheus.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    {{- range $key, $value := .Values.ingress.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.monitoringHost }}
+      http:
+        paths:
+        - backend:
+            serviceName: {{ template "prometheus.fullname" . }}
+            servicePort: {{ .Values.service.prometheusInternalPort }}
+          path: /prometheus
+        - backend:
+            serviceName: {{ template "alertmanager.fullname" . }}
+            servicePort: {{ .Values.service.alertManagerInternalPort }}
+          path: /alertmanager
+  {{- if .Values.ingress.tls }}
+  tls:
+{{ toYaml .Values.ingress.tls | indent 4 }}
+  {{- end -}}
+{{- end -}}
+

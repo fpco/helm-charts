@@ -1,0 +1,4 @@
+apiVersion: v1
+description: FPComplete Monitoring - Requires k8s 1.8.x!
+name: fpco-monitoring
+version: 0.1.0

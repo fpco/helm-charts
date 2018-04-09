@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kube-controller-manager
+  labels:
+    k8s-app: kube-controller-manager
+    app: {{ template "kube-exporter.name" . }}-kube-controller-manager
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  jobLabel: k8s-app
+  endpoints:
+  - port: http-metrics
+    interval: 30s
+  selector:
+    matchLabels:
+      k8s-app: kube-controller-manager
+  namespaceSelector:
+    matchNames:
+    - kube-system

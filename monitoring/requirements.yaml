@@ -1,0 +1,30 @@
+dependencies:
+- name: prometheus-operator
+  version: 0.1.0
+  repository: file://../operator
+  condition: phase1
+
+- name: kube-state-metrics
+  version: 0.11.0
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  condition: phase2
+
+- name: prometheus-node-exporter
+  version: 0.5.0
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  condition: phase2
+
+- name: prometheus
+  version: 0.1.0
+  repository: file://../prometheus
+  condition: phase2
+
+- name: kube-exporter
+  version: 0.1.0
+  repository: file://../kube-exporter
+  condition: phase2
+
+- name: grafana
+  version: 1.17.2
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  condition: phase2

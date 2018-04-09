@@ -1,2 +1,4 @@
 foundation/charts
 monitoring/charts
+monitoring/settings.yaml
+monitoring/secrets/*

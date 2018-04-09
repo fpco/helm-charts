@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "fpco-monitoring.fullname" . }}-kube-state-metrics
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    app: {{ template "fpco-monitoring.name" . }}-kube-state-metrics
+    k8s-app: {{ template "fpco-monitoring.name" . }}-kube-state-metrics
+spec:
+  jobLabel: kube-state-metrics
+  endpoints:
+  - interval: 30s
+    port: http
+    honorLabels: true
+  selector:
+    matchLabels:
+      app: kube-state-metrics
+      release: "{{ .Release.Name }}"

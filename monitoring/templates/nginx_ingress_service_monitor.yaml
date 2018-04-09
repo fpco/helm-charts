@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "fpco-monitoring.fullname" . }}-nginx-ingress
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    app: {{ template "fpco-monitoring.name" . }}-nginx-ingress
+    k8s-app: {{ template "fpco-monitoring.name" . }}-nginx-ingress
+spec:
+  jobLabel: nginx-ingress
+  endpoints:
+  - interval: 30s
+    port: metrics
+  selector:
+    matchLabels:
+      app: nginx-ingress
+  namespaceSelector:
+    matchNames:
+      - default

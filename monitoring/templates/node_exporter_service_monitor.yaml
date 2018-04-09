@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "fpco-monitoring.fullname" . }}-node-exporter
+  labels:
+    k8s-app: {{ template "fpco-monitoring.name" . }}-node-exporter
+    app: {{ template "fpco-monitoring.name" . }}-node-exporter
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  jobLabel: {{ .Values.nodeExporter.jobLabel }}
+  selector:
+    matchLabels:
+      app: prometheus-node-exporter
+      release: {{ .Release.Name }}
+  endpoints:
+  - port: metrics
+    interval: 30s

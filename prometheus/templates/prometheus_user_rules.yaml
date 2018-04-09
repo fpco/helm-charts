@@ -1,0 +1,15 @@
+{{- if .Values.userAlerts.create }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "prometheus.fullname" . }}-user-rules
+  labels:
+    app: {{ template "prometheus.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    role: fpco-monitoring-prometheus-rulefiles
+data:
+  user.rules.yaml:
+{{ toYaml .Values.userAlerts.yaml | indent  4 }}
+{{- end -}}
