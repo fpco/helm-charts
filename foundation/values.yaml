@@ -1,3 +1,11 @@
+# disable components that are not needed
+enabled:
+  kube-lego: true
+  external-dns: true
+  heapster: true
+  kubernetes-dashboard: true
+  kube2iam: true
+
 kube-lego:
   config:
     # set your email
