@@ -1,0 +1,30 @@
+# This DaemonSet works around https://github.com/kubernetes/kops/issues/2685 by
+# ensuring the 'cni0' interface is created (which won't happen until a
+# non-hostNetwork pod is assigned to a node).
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: {{ template "kube2iam.fullname" . }}-createcni0
+  namespace: kube-system
+  labels:
+    app: {{ template "kube2iam.name" . }}-createcni0
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ template "kube2iam.name" . }}-createcni0
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: sleep-forever
+          image: gcr.io/google_containers/pause:0.8.0
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 10m
+              memory: 10Mi
