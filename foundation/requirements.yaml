@@ -20,6 +20,6 @@ dependencies:
   condition: enabled.kubernetes-dashboard
 
 - name: kube2iam
-  version: 0.8.0
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 0.9.1
+  repository: file://../kube2iam
   condition: enabled.kube2iam
