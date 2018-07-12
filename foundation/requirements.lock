@@ -14,5 +14,5 @@ dependencies:
 - name: kube2iam
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 0.8.0
-digest: sha256:1207237139d8e50c232700adf4a7351e176d8850b44de3e614c0bae87fbb3882
-generated: 2018-03-01T19:10:56.267406368+01:00
+digest: sha256:a811fbab0c848da3577d150c0bf87c2171bdb05a7cfcbbf6510d126a512efa55
+generated: 2018-07-12T19:30:51.117635651+02:00

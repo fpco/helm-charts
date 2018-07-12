@@ -2,24 +2,24 @@ dependencies:
 - name: kube-lego
   version: 0.4.0
   repository: https://kubernetes-charts.storage.googleapis.com/
-  when: enabled.kube-lego
+  condition: enabled.kube-lego
 
 - name: external-dns
   version: 0.4.9
   repository: https://kubernetes-charts.storage.googleapis.com/
-  when: enabled.external-dns
+  condition: enabled.external-dns
 
 - name: heapster
   version: 0.2.7
   repository: https://kubernetes-charts.storage.googleapis.com/
-  when: enabled.heapster
+  condition: enabled.heapster
 
 - name: kubernetes-dashboard
   version: 0.5.3
   repository: https://kubernetes-charts.storage.googleapis.com/
-  when: enabled.kubernetes-dashboard
+  condition: enabled.kubernetes-dashboard
 
 - name: kube2iam
   version: 0.8.0
   repository: https://kubernetes-charts.storage.googleapis.com/
-  when: enabled.kube2iam
+  condition: enabled.kube2iam
