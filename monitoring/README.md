@@ -119,7 +119,8 @@ helm upgrade  --install -f settings.yaml fpco-monitoring $CHART_NAME \
     --set phase1=true \
     --namespace=monitoring
 ```
-The we install the rest:
+
+Then we install the rest:
 
 ```
 helm upgrade -f settings.yaml  --install fpco-monitoring $CHART_NAME \
