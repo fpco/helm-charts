@@ -13,9 +13,10 @@ spec:
   endpoints:
   - port: http-metrics
     interval: 30s
-  - port: cadvisor
+  - port: http-metrics
     interval: 30s
     honorLabels: true
+    path: /metrics/cadvisor
   selector:
     matchLabels:
       k8s-app: kubelet

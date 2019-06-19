@@ -1,3 +1,4 @@
+{{- if .Values.phase2 -}}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -19,3 +20,4 @@ spec:
   namespaceSelector:
     matchNames:
       - default
+{{- end }}

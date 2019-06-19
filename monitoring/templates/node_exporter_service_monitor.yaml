@@ -1,3 +1,4 @@
+{{- if .Values.phase2 -}}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -17,3 +18,4 @@ spec:
   endpoints:
   - port: metrics
     interval: 30s
+{{- end }}

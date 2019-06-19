@@ -16,7 +16,7 @@ spec:
     matchExpressions:
       - {key: k8s-app, operator: Exists}
   serviceAccountName: {{ template "prometheus.fullname" . }}
-  version: {{ .Values.service.prometheusVersion }}
+  version: {{ .Values.prometheusVersion }}
   ruleSelector:
     matchLabels:
       role: fpco-monitoring-prometheus-rulefiles
@@ -25,5 +25,6 @@ spec:
     - name: {{ template "alertmanager.fullname" . }}
       port: web
       pathPrefix: "/alertmanager"
+      namespace: {{ .Release.Namespace }}
   resources:
 {{ toYaml .Values.resources | indent 4 }}
