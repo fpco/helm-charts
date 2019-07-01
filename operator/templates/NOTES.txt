@@ -1,4 +1,4 @@
-Prometheus operator has been deployes
+Prometheus operator has been deployed
 
 Check if everything is running by doing:
 
