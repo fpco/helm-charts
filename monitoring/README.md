@@ -131,9 +131,3 @@ helm upgrade -f settings.yaml  --install fpco-monitoring $CHART_NAME \
 
 `NOTE`: See `settings.yaml.example` for how to configure fpco/monitoring. Most likely you can just change
 the placeholders denoted with `<ALLCAPS>`.
-
-
-### NOTES:
-
-* Nginx Dashboard imported from: https://github.com/kubernetes/ingress-nginx/tree/master/deploy/grafana/dashboards
-* Kubernetes cluster monitoring dashboard impored from: https://grafana.com/dashboards/3119
