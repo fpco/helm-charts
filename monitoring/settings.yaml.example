@@ -26,8 +26,9 @@ prometheus:
         - alert: HttpErrorIncrease
           annotations:
             message: "There is an incresed number of NON 2xx responses."
+          # fpco-monitoring-example-app-example-app is the app we are monitoring
           expr: |
-            (sum(rate(nginx_ingress_controller_requests{ingres="fpco-monitoring-example-app-example-app", status!~"[4-5].*"}[2m]))
+            (sum(rate(nginx_ingress_controller_requests{ingress="fpco-monitoring-example-app-example-app", status=~"[4-5].*"}[2m]))
               /
             sum(rate(nginx_ingress_controller_requests{ingress="fpco-monitoring-example-app-example-app"}[2m])))
             * 100 > 1
