@@ -85,7 +85,7 @@ helm upgrade --install \
 For the deployment to work you have to create the alertmanager secret file:
 
 ```
-kubectl create secret generic alertmanager-fpco-monitoring-alertmanager --from-file=/tmp/alertmanager.yaml
+kubectl create secret generic alertmanager-fpco-monitoring-alertmanager --from-file=/tmp/alertmanager.yaml --namespace=monitoring
 ```
 
 Please see `alertmanager.yaml.example` for an example of this file.
@@ -101,7 +101,7 @@ to them we put `basic auth` in front (this will likely change soon).
 To create a basic auth file use `htpasswd -c ./auth admin`, enter a password and then run:
 
 ```
-kubectl create secret generic basic-auth --from-file=auth
+kubectl create secret generic basic-auth --from-file=auth --namespace=monitoring
 ```
 
 `NOTE`: when creating the basic auth file with `htpasswd -c ./auth admin` it's important to name the file just `auth`.
