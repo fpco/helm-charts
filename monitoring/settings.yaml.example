@@ -13,6 +13,37 @@ grafana:
       - secretName: monitoring-tls-cert
         hosts:
           - monitoring.<MYDOMAIN>.com
+  datasources:
+   datasources.yaml:
+     apiVersion: 1
+     datasources:
+     - name: Prometheus
+       type: prometheus
+       url: http://<RELEASENAME>-prometheus:9090/prometheus/
+       access: proxy
+       isDefault: true
+  dashboards:
+    default:
+      nginx-dashboard:
+        # https://github.com/kubernetes/ingress-nginx/tree/master/deploy/grafana/dashboards
+        gnetId: 9614
+        revision: 1
+        datasource: Prometheus
+      kubernetes-dashboard:
+        url: https://raw.githubusercontent.com/fpco/helm-charts/master/monitoring/dashboards/kubernetes-dashboard.json
+  # this is actually a workaround for https://github.com/helm/charts/issues/15083
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
   service:
     type: ClusterIP
 
